@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
+import { BackendService } from '../backend.service';
 
 @Component({
   selector: 'app-portafolio',
@@ -7,7 +8,7 @@ import { ApiService } from '../api.service';
   styleUrls: ['./portafolio.component.css']
 })
 export class PortafolioComponent {
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private backendService: BackendService) { }
 
   private allCoins = new Array();
   public filterCoins = new Array();
@@ -30,7 +31,8 @@ export class PortafolioComponent {
   }
 
   addFavourite(coin:object) {
-    this.favouriteCoins.push(coin);
+    // this.favouriteCoins.push(coin);
+    this.backendService.addCoin(coin);
   }
 
   deleteFavourite(coin:object) {

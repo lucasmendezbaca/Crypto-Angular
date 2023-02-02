@@ -5,6 +5,7 @@ import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAut
   providedIn: 'root'
 })
 export class AuthenticationService {
+  public user: any;
 
   constructor(private auth:Auth) { }
 
@@ -44,5 +45,13 @@ export class AuthenticationService {
       }
     });
     return isLogged;
+  }
+
+  curenUser() {
+    return new Promise((resolve, reject) => {
+      const user = this.auth.currentUser;
+      resolve(user);
+    });
+    // return this.auth.currentUser;
   }
 }
