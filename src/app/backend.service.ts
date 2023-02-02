@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { collection, addDoc } from '@angular/fire/firestore';
-// import { collection, addDoc } from "firebase/firestore"; 
+import { provideFirebaseApp } from '@angular/fire/app';
+import { getFirestore, addDoc, collection } from '@angular/fire/firestore';
+import { initializeApp } from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
@@ -8,13 +9,11 @@ import { collection, addDoc } from '@angular/fire/firestore';
 export class BackendService {
   constructor() { }
 
-  addCoin(coin: any) {
-    addDoc(collection('coins'), coin)
-      .then((docRef) => {
-        console.log('Document written with ID: ', docRef.id);
-      })
-      .catch((error) => {
-        console.error('Error adding document: ', error);
-      });
+  async addCoin(coin: any) {
+    const docRef = await addDoc(collection(this.db, "favoritas"), {
+      moneda: coin.name,
+      usuario: 'lucasmendezbaca@gmail.com'
+    });
+    console.log("Document written with ID: ", docRef.id);
   }
 }

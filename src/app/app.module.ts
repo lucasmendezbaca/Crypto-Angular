@@ -12,6 +12,9 @@ import { HomeComponent } from './home/home.component';
 import { PortafolioComponent } from './portafolio/portafolio.component';
 
 import { ApiService } from './api.service';
+import { AuthenticationService } from './authentication.service';
+import { BackendService } from './backend.service';
+
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
@@ -41,7 +44,7 @@ import { RegisterComponent } from './register/register.component';
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore())
   ],
-  providers: [ApiService],
+  providers: [ApiService, AuthenticationService, BackendService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
