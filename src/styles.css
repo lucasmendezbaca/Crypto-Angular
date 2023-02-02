@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    color: white;
+    background-color: white;
+}
+
+main {
+    margin-top: 64px;
+    min-height: 100vh;
+}
+
+.navbar-area {
+    background-color: #1b3ac6 !important;
+}
