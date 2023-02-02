@@ -1,6 +1,22 @@
 <div class="portafolio">
     <div class="portafolio__cabecera text-center">
         <h1>Busca tus coins favoritas</h1>
-        <input type="text" name="searchCoin" id="searchCoin">
+        <input type="text" name="searchCoin" id="searchCoin" [(ngModel)]="coinName" (keyup)="filter()">
     </div>
+
+    <ul class="text-dark">
+        <li *ngFor="let coin of filterCoins">
+            {{coin.name}}
+            <button (click)="addFavourite(coin)">add</button>
+        </li>
+    </ul>
+
+    <hr>
+
+    <ul class="text-dark">
+        <li *ngFor="let coin of favouriteCoins">
+            {{coin.name}}
+            <button (click)="deleteFavourite(coin)">remove</button>
+        </li>
+    </ul>
 </div>

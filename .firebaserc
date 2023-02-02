@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "crypto-angular-df429": {
+      "hosting": {
+        "Crypto-Angular": [
+          "crypto-angular-df429"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "crypto-angular-df429"
+  }
+}
