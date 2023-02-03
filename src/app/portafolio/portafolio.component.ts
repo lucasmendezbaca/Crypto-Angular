@@ -8,12 +8,14 @@ import { BackendService } from '../backend.service';
   styleUrls: ['./portafolio.component.css']
 })
 export class PortafolioComponent {
-  constructor(private apiService: ApiService, private backendService: BackendService) { }
-
   private allCoins = new Array();
   public filterCoins = new Array();
-  public favouriteCoins = new Array();
+  public favouriteCoins: any = new Array();
   public coinName = ''
+
+  constructor(private apiService: ApiService, private backendService: BackendService) {
+    this.getFavoriteCoins();
+  }
 
   ngOnInit() {
     this.apiService.getCoins().subscribe((data:any) => {
@@ -31,11 +33,24 @@ export class PortafolioComponent {
   }
 
   addFavourite(coin:object) {
-    // this.favouriteCoins.push(coin);
     this.backendService.addCoin(coin);
   }
 
+  getFavoriteCoins() {
+    this.backendService.favouriteCoins.forEach(coin => {
+      this.favouriteCoins = new Array();
+      for(let i = 0; i < coin.length; i++) {
+        this.apiService.getCoin(coin[i].moneda).subscribe((data:any) => {
+          if(this.favouriteCoins.find((newCoin:any) => newCoin.id == data.id)) {
+            return;
+          }
+          this.favouriteCoins.push(data);
+        })
+      }
+    })
+  }
+
   deleteFavourite(coin:object) {
-    this.favouriteCoins.splice(this.favouriteCoins.indexOf(coin), 1);
+    this.backendService.deleteCoin(coin);
   }
 }

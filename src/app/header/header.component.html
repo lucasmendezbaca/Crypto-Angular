@@ -19,9 +19,11 @@
                             <li class="nav-item">
                                 <a class="page-scroll" routerLink="">Home</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="page-scroll" routerLink="portafolio">Portafolio</a>
-                            </li>
+                            <template *ngIf="this.auth.user">
+                                <li class="nav-item">
+                                    <a class="page-scroll" routerLink="portafolio">Portafolio</a>
+                                </li>
+                            </template>
                             <li class="nav-item">
                                 <a class="page-scroll" routerLink="iniciar-sesion">Iniciar Sesión</a>
                             </li>

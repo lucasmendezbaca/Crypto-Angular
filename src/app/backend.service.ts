@@ -1,26 +1,35 @@
 import { Injectable } from '@angular/core';
 import { AuthenticationService } from './authentication.service';
-import { Firestore, collectionData, collection, addDoc } from '@angular/fire/firestore';
+import { ApiService } from './api.service';
+import { Firestore, collectionData, setDoc, doc, collection, query, where, deleteDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BackendService {
-  // private coins: Observable<any[]>;
-  private coinsCollection: any;
+  favouriteCoins: Observable<any>;
+  private db: Firestore;
 
-  constructor(firestore: Firestore, private auth: AuthenticationService) {
-    this.coinsCollection = collection(firestore, 'favoritas');
-    // this.coins = collectionData(coinsCollection);
+  constructor(firestore: Firestore, private auth: AuthenticationService, private apiService: ApiService) {
+    this.db = firestore;
+
+    const coinsDB = collection(firestore, 'favoritas');
+    this.favouriteCoins = collectionData(query(coinsDB, where("usuario", "==", 'lucasmendezbaca@gmail.com')));
   }
 
   async addCoin(coin: any) {
-    const docRef = await addDoc(this.coinsCollection, {
-      moneda: coin.name,
-      usuario: 'lucasmendezbaca@gmail.com'
+    await setDoc(doc(this.db, "favoritas", coin.id), {
+      moneda: coin.id,
+      usuario: this.auth.user.email
+      // usuario: 'lucasmendezbaca@gmail.com'
     });
-    console.log("Document written with ID: ", docRef.id);
-    console.log(this.auth.curenUser());
+    console.log("Document written with ID: ", coin.name);
   }
+
+  async deleteCoin(coin: any) {
+    await deleteDoc(doc(this.db, "favoritas", coin.name.toLowerCase()));
+    console.log("Document deleted with ID: ", coin.name);
+  }
+
 }

@@ -7,12 +7,6 @@ import { AuthenticationService } from '../authentication.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  public isLogged = false;
-
-  constructor(private authenticationService:AuthenticationService) { }
-
-  isLoged() {
-    this.isLogged = this.authenticationService.isLogged();
-  }
+  constructor(public auth:AuthenticationService) { }
 
 }

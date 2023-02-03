@@ -9,6 +9,10 @@ export class AuthenticationService {
 
   constructor(private auth:Auth) { }
 
+  ngOninit() {
+    this.isLogged();
+  }
+
   register(email: string, password: string) {
     createUserWithEmailAndPassword(this.auth, email, password)
       .then((userCredential) => {
@@ -30,21 +34,19 @@ export class AuthenticationService {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        console.log(errorCode, errorMessage)
       });
   }
 
   isLogged() {
-    let isLogged = false;
     onAuthStateChanged(this.auth, (user) => {
       if (user) {
         console.log('Logged in');
-        isLogged = true;
+        this.user = user;
       } else {
         console.log('Not logged in');
-        isLogged = false;
       }
     });
-    return isLogged;
   }
 
   curenUser() {
