@@ -28,8 +28,8 @@ export class BackendService {
   }
 
   async deleteCoin(coin: any) {
-    await deleteDoc(doc(this.db, "favoritas", coin.name.toLowerCase()));
-    console.log("Document deleted with ID: ", coin.name);
+    await deleteDoc(doc(this.db, "favoritas", coin.id));
+    console.log("Document deleted with ID: ", coin.id);
   }
 
 }

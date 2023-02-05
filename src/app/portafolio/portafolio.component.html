@@ -1,22 +1,59 @@
 <div class="portafolio">
     <div class="portafolio__cabecera text-center">
         <h1>Busca tus coins favoritas</h1>
-        <input type="text" name="searchCoin" id="searchCoin" [(ngModel)]="coinName" (keyup)="filter()">
+        <!-- <input type="text" name="searchCoin" id="searchCoin" [(ngModel)]="coinName" (keyup)="filter()"> -->
+
+        <div class="form-outline p-5">
+            <input type="email" id="form3Example3" class="form-control form-control-lg"
+            placeholder="Empieza a escribir para filtrar" [(ngModel)]="coinName" (keyup)="filter()" />
+        </div>
     </div>
 
     <ul class="text-dark">
-        <li *ngFor="let coin of filterCoins">
+        <!-- <li *ngFor="let coin of filterCoins">
             {{coin.name}}
             <button (click)="addFavourite(coin)">add</button>
-        </li>
+        </li> -->
+
     </ul>
+
+    <div class="searchCoins">
+        <div class="card mt-3 align-items-center" *ngFor="let coin of filterCoins">
+            <img [src]="coin.image.large" alt="Cryptocurrency">
+            <div class="card-body text-center">
+                <h5 class="card-title font-weight-bold">{{ coin.name }}</h5>
+                <button class="btn-primary" (click)="addFavourite(coin)">add</button>
+            </div>
+        </div>
+    </div>
 
     <hr>
 
-    <ul class="text-dark">
-        <li *ngFor="let coin of favouriteCoins">
-            {{coin.name}}
-            <button (click)="deleteFavourite(coin)">remove</button>
-        </li>
-    </ul>
+    <table class="table text-dark">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Capitalización</th>
+                <th scope="col">Valores 24h</th>
+                <th scope="col">Borrar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let coin of favouriteCoins">
+                <th scope="row"><img [src]="coin.image.small" alt="">{{coin.name}} | {{ coin.symbol }}</th>
+                <td>{{coin.market_data.current_price.eur}} €</td>
+                <td>99999999</td>
+                <td>
+                    <span class="text-success">{{ coin.market_data.high_24h.eur }} €</span>
+                    |
+                    <span class="text-danger">{{ coin.market_data.low_24h.eur }} €</span>
+                </td>
+                <td>
+                    <button class="btn btn-danger" (click)="deleteFavourite(coin)">borrar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
 </div>

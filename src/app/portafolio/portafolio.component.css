@@ -1,3 +1,13 @@
 .portafolio {
-    padding-top: 5vh;
+    padding: 5vw;
+}
+
+.searchCoins {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
+    grid-gap: 1.5rem;
+}
+
+.searchCoins img{
+    max-width: 80px;
 }
