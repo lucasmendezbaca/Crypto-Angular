@@ -9,4 +9,13 @@ import { AuthenticationService } from '../authentication.service';
 export class HeaderComponent {
   constructor(public auth:AuthenticationService) { }
 
+  ngOnInit(): void {
+    this.auth.isLogged();
+    console.log(this.auth.user);
+  }
+
+  singOut() {
+    this.auth.singOut();
+  }
+
 }

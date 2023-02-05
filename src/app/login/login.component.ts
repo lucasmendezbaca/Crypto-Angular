@@ -15,4 +15,8 @@ export class LoginComponent {
   login() {
     this.authenticationService.login(this.email, this.password);
   }
+
+  loginWithGoogle() {
+    this.authenticationService.loginWithGoogle();
+  }
 }
