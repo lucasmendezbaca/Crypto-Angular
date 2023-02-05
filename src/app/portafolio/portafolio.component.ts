@@ -36,11 +36,25 @@ export class PortafolioComponent {
     this.backendService.addCoin(coin);
   }
 
+  // getFavoriteCoins() {
+  //   this.backendService.favouriteCoins.forEach(coin => {
+  //     this.favouriteCoins = new Array();
+  //     for(let i = 0; i < coin.length; i++) {
+  //       this.apiService.getCoin(coin[i].moneda).subscribe((data:any) => {
+  //         if(this.favouriteCoins.find((newCoin:any) => newCoin.id == data.id)) {
+  //           return;
+  //         }
+  //         this.favouriteCoins.push(data);
+  //       })
+  //     }
+  //   })
+  // }
+
   getFavoriteCoins() {
-    this.backendService.favouriteCoins.forEach(coin => {
+    this.backendService.favouriteCoins.subscribe((data:any) => {
       this.favouriteCoins = new Array();
-      for(let i = 0; i < coin.length; i++) {
-        this.apiService.getCoin(coin[i].moneda).subscribe((data:any) => {
+      for(let i = 0; i < data.length; i++) {
+        this.apiService.getCoin(data[i].moneda).subscribe((data:any) => {
           if(this.favouriteCoins.find((newCoin:any) => newCoin.id == data.id)) {
             return;
           }

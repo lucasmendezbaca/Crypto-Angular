@@ -9,7 +9,7 @@ export class ApiService {
   constructor(private http:HttpClient) { }
 
   getCoins () {
-    return this.http.get('https://api.coingecko.com/api/v3/coins');
+    return this.http.get('https://api.coingecko.com/api/v3/coins/list');
   }
 
   getCoin (id:string) {

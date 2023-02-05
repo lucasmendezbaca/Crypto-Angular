@@ -77,11 +77,4 @@ export class AuthenticationService {
     });
   }
 
-  curenUser() {
-    return new Promise((resolve, reject) => {
-      const user = this.auth.currentUser;
-      resolve(user);
-    });
-    // return this.auth.currentUser;
-  }
 }

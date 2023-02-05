@@ -15,14 +15,14 @@ export class BackendService {
     this.db = firestore;
 
     const coinsDB = collection(firestore, 'favoritas');
-    this.favouriteCoins = collectionData(query(coinsDB, where("usuario", "==", 'lucasmendezbaca@gmail.com')));
+    this.favouriteCoins = collectionData(query(coinsDB, where("usuario", "==", this.auth.user.email)));
+    console.log(this.auth.user.email)
   }
 
   async addCoin(coin: any) {
     await setDoc(doc(this.db, "favoritas", coin.id), {
       moneda: coin.id,
       usuario: this.auth.user.email
-      // usuario: 'lucasmendezbaca@gmail.com'
     });
     console.log("Document written with ID: ", coin.name);
   }
