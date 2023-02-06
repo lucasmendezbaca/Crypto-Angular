@@ -1,5 +1,13 @@
 <div class="detalle-moneda">
-    <h1>{{ coinInfo.name }}</h1>
+    <div class="detalle-moneda__header">
+        <div class="naming">
+            <img [src]="coinInfo.image.large" alt="">
+            <h1>{{ coinInfo.name }} | {{ coinInfo.symbol }}</h1>
+        </div>
+        <div class="current-price">
+            <h1>{{ coinInfo.market_data.current_price.eur }} €</h1>
+        </div>
+    </div>
 
     <!-- <div class="chart-days text-dark">
         <input type="radio" name="chartDays" value="1" [(ngModel)]="chartDays"> 1d
@@ -13,4 +21,38 @@
     <div>
         <canvasjs-chart [options]="chartOptions" [styles]="{width: '100%', height:'360px'}" (chartInstance)="getChartInstance($event)"></canvasjs-chart>
     </div>     
+
+    <div class="detalle-moneda__fecha-inicio mt-5">
+        <h3>Fecha de inicio:</h3>
+        <p>{{ coinInfo.genesis_date }}</p>
+    </div>
+
+    <div class="description mt-5">
+        <h3 class="mb-5">Description:</h3>
+        <p *ngIf="coinInfo.description.es">{{ coinInfo.description.es }}</p>
+        <p *ngIf="coinInfo.description.en && !coinInfo.description.es">{{ coinInfo.description.en }}</p>
+    </div>
+
+    <h3 class="mt-5 mb-5">Links:</h3>
+    <div class="detalle-moneda__links">
+        <div>
+            <h4>Web:</h4>
+            <a class="mb-3" [href]="coinInfo.links.homepage[0]" target="_blank">{{ coinInfo.links.homepage[0] }}</a>
+        </div>
+
+        <div>
+        <h4>Social:</h4>
+            <p>Twitter: {{ coinInfo.links.twitter_screen_name }}</p>
+            <p class="mb-3">Facebook: {{ coinInfo.links.facebook_username }}</p>
+        </div>
+
+        <div>
+            <h4 class="mb-3">Gihub:</h4>
+            <ul>
+                <li *ngFor="let link of coinInfo.links.repos_url.github">
+                    <a href="{{ link }}" target="_blank">{{ link }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>

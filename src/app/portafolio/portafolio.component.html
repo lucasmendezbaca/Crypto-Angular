@@ -1,21 +1,12 @@
 <div class="portafolio">
     <div class="portafolio__cabecera text-center">
         <h1>Busca tus coins favoritas</h1>
-        <!-- <input type="text" name="searchCoin" id="searchCoin" [(ngModel)]="coinName" (keyup)="filter()"> -->
 
         <div class="form-outline p-5">
             <input type="email" id="form3Example3" class="form-control form-control-lg"
             placeholder="Empieza a escribir para filtrar" [(ngModel)]="coinName" (keyup)="filter()" />
         </div>
     </div>
-
-    <ul class="text-dark">
-        <!-- <li *ngFor="let coin of filterCoins">
-            {{coin.name}}
-            <button (click)="addFavourite(coin)">add</button>
-        </li> -->
-
-    </ul>
 
     <div class="searchCoins">
         <div class="card mt-3 align-items-center" *ngFor="let coin of filterCoins">
@@ -36,7 +27,7 @@
                 <th scope="col">Precio</th>
                 <th scope="col">Capitalización</th>
                 <th scope="col">Valores 24h</th>
-                <th scope="col">Borrar</th>
+                <th scope="col">Opciones</th>
             </tr>
         </thead>
         <tbody>

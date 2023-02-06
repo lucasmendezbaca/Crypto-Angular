@@ -20,4 +20,8 @@ export class RegisterComponent {
     this.authenticationService.loginWithGoogle();
   }
 
+
+  loginWithGithub() {
+    this.authenticationService.loginWithGithub();
+  }
 }
