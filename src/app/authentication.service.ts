@@ -1,14 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, GithubAuthProvider, signInWithPopup } from "@angular/fire/auth";
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
   public user: any;
+  // public user$: Observable<any>;
 
-  constructor(private auth:Auth, private router:Router) { }
+
+  constructor(private auth:Auth, private router:Router) {
+    // this.user$ = new Observable((observer) => {
+    //   onAuthStateChanged(this.auth, (user) => {
+    //     if (user) {
+    //       observer.next(user);
+    //     } else {
+    //       observer.next(null);
+    //     }
+    //   });
+    // });
+  }
 
   register(email: string, password: string) {
     createUserWithEmailAndPassword(this.auth, email, password)

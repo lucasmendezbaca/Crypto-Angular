@@ -12,10 +12,12 @@ export class BackendService {
   private db: Firestore;
 
   constructor(firestore: Firestore, private auth: AuthenticationService, private apiService: ApiService) {
+    this.auth.isLogged();
     this.db = firestore;
 
     const coinsDB = collection(firestore, 'favoritas');
     this.favouriteCoins = collectionData(query(coinsDB, where("usuario", "==", this.auth.user.email)));
+    // this.favouriteCoins = collectionData(query(coinsDB, where("usuario", "==", this.auth.user$.subscribe(user => user.email))));
     console.log(this.auth.user.email)
   }
 

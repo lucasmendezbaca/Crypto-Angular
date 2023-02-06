@@ -22,6 +22,7 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { DetalleMonedaComponent } from './detalle-moneda/detalle-moneda.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { RegisterComponent } from './register/register.component';
     HomeComponent,
     PortafolioComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    DetalleMonedaComponent
   ],
   imports: [
     BrowserModule,
