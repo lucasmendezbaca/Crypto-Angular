@@ -19,4 +19,8 @@ export class LoginComponent {
   loginWithGoogle() {
     this.authenticationService.loginWithGoogle();
   }
+
+  loginWithGithub() {
+    this.authenticationService.loginWithGithub();
+  }
 }

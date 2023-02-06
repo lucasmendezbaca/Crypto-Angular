@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup } from "@angular/fire/auth";
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, GithubAuthProvider, signInWithPopup } from "@angular/fire/auth";
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -39,6 +39,24 @@ export class AuthenticationService {
 
   loginWithGoogle() {
     signInWithPopup(this.auth, new GoogleAuthProvider())
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        this.router.navigate(['/portafolio']);
+      }).catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        console.log(errorCode, errorMessage, email, credential)
+      });
+  }
+
+  loginWithGithub() {
+    signInWithPopup(this.auth, new GithubAuthProvider())
       .then((result) => {
         const user = result.user;
         console.log(user);
