@@ -1,1 +1,16 @@
-<h1>{{ coinInfo.name }}</h1>
+<div class="detalle-moneda">
+    <h1>{{ coinInfo.name }}</h1>
+
+    <!-- <div class="chart-days text-dark">
+        <input type="radio" name="chartDays" value="1" [(ngModel)]="chartDays"> 1d
+        <input type="radio" name="chartDays" value="7" [(ngModel)]="chartDays"> 7d
+        <input type="radio" name="chartDays" value="14" [(ngModel)]="chartDays"> 14d
+        <input type="radio" name="chartDays" value="30" [(ngModel)]="chartDays"> 30d
+        <input type="radio" name="chartDays" value="365" [(ngModel)]="chartDays"> 365d
+        <input type="radio" name="chartDays" value="max" [(ngModel)]="chartDays"> max
+    </div> -->
+
+    <div>
+        <canvasjs-chart [options]="chartOptions" [styles]="{width: '100%', height:'360px'}" (chartInstance)="getChartInstance($event)"></canvasjs-chart>
+    </div>     
+</div>
