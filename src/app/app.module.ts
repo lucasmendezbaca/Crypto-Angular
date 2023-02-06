@@ -24,6 +24,9 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { DetalleMonedaComponent } from './detalle-moneda/detalle-moneda.component';
 
+// import * as CanvasJSAngularChart from '../assets/canvasjs.angular.component';
+// var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
+
 @NgModule({
   declarations: [
     AppComponent,

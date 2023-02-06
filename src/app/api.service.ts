@@ -15,4 +15,8 @@ export class ApiService {
   getCoin (id:string) {
     return this.http.get('https://api.coingecko.com/api/v3/coins/' + id);
   }
+
+  getHistoricalMarketData (id:string, vs_currenci:string, days:string) {
+    return this.http.get('https://api.coingecko.com/api/v3/coins/' + id + '/market_chart?vs_currency=' + vs_currenci + '&days=' + days);
+  }
 }

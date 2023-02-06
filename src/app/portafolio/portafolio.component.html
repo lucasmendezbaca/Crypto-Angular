@@ -50,6 +50,9 @@
                     <span class="text-danger">{{ coin.market_data.low_24h.eur }} €</span>
                 </td>
                 <td>
+                    <a [routerLink]="['detalle-moneda', coin.id]">
+                        <button class="btn btn-primary mr-3">Más info</button>
+                    </a>
                     <button class="btn btn-danger" (click)="deleteFavourite(coin)">borrar</button>
                 </td>
             </tr>
